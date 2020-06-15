@@ -11,13 +11,16 @@ def getCitedUrl(origin_url):
 	headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36'}  
 	request=urllib.request.Request(origin_url,headers=headers)
 	response=urllib.request.urlopen(request)
-	source_code=response.read()
-	soup=BeautifulSoup(source_code,'html.parser')
-	hrefs=soup.find('div',id="gs_res_ccl_mid").findAll('a')
-	for a in hrefs:
-		if "被引用次数" in str(a.find(text=True)):
-			div=str(a['href'])
-	return div
+	try:
+		source_code=response.read()
+		soup=BeautifulSoup(source_code,'html.parser')
+		hrefs=soup.find('div',id="gs_res_ccl_mid").findAll('a')
+		for a in hrefs:
+			if "被引用次数" in str(a.find(text=True)):
+				div=str(a['href'])
+		return div
+	except:
+		return None
 
 
 def crawler(url):
@@ -65,8 +68,11 @@ if __name__=="__main__":
 		enc_paperName=paperName.encode('utf-8')
 		suf_url = urllib.parse.quote(enc_paperName)
 		url=pre_url+suf_url
-		url=pre_url2+getCitedUrl(url)
-		print(url)
+		if getCitedUrl(url):
+			url=pre_url2+getCitedUrl(url)
+		else:
+			continue
+		# print(url)
 		while url:
 			url=crawler(url)
 		for title in titles:
