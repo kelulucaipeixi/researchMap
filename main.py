@@ -3,8 +3,9 @@ from bs4 import BeautifulSoup
 import urllib.parse
 import csv
 import time
+import json
 titles=[]
-
+names=[]
 #from url of certain paper to url of papers cited the paper
 def getCitedUrl(origin_url):
 	headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36'}  
@@ -41,8 +42,18 @@ def crawler(url):
 		link="https://scholar.google.com.hk"+link
 		return link
 	except:
-		print("crawler over.")
+		print("A paper is over.")
+
+def getMendeleyNames(file):
+	global names
+	new_dict=json.load(file)
+	for paper in new_dict:
+		names.append(paper['title'])
 if __name__=="__main__":
+	# paper_nodes=open("paper_nodes.json")
+	# getMendeleyNames(paper_nodes)
+	# print(names)
+	# names=["Towards conversational search and recommendation: System Ask, user respond","Towards conversational recommender systems"]
 	names=["Asking clarifying questions in open-domain information-seeking conversations","Towards conversational search and recommendation: System Ask, user respond","Towards conversational recommender systems"]
 	pre_url="https://scholar.google.com.hk/scholar?hl=zh-CN&as_sdt=0%2C5&q="
 	pre_url2="https://scholar.google.com.hk"
@@ -62,3 +73,4 @@ if __name__=="__main__":
 			for name in names:
 				if str(name)==str(title):
 					writer.writerow([title,paperName])
+
