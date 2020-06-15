@@ -50,11 +50,11 @@ def getMendeleyNames(file):
 	for paper in new_dict:
 		names.append(paper['title'])
 if __name__=="__main__":
-	# paper_nodes=open("paper_nodes.json")
-	# getMendeleyNames(paper_nodes)
+	paper_nodes=open("paper_nodes.json")
+	getMendeleyNames(paper_nodes)
 	# print(names)
 	# names=["Towards conversational search and recommendation: System Ask, user respond","Towards conversational recommender systems"]
-	names=["Asking clarifying questions in open-domain information-seeking conversations","Towards conversational search and recommendation: System Ask, user respond","Towards conversational recommender systems"]
+	# names=["Asking clarifying questions in open-domain information-seeking conversations","Towards conversational search and recommendation: System Ask, user respond","Towards conversational recommender systems"]
 	pre_url="https://scholar.google.com.hk/scholar?hl=zh-CN&as_sdt=0%2C5&q="
 	pre_url2="https://scholar.google.com.hk"
 	f=open('outcome.csv','w',newline='')
