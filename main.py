@@ -69,11 +69,13 @@ if __name__=="__main__":
 		suf_url = urllib.parse.quote(enc_paperName)
 		url=pre_url+suf_url
 		if getCitedUrl(url):
+			time.sleep(10)
 			url=pre_url2+getCitedUrl(url)
 		else:
 			continue
 		# print(url)
 		while url:
+			time.sleep(10)
 			url=crawler(url)
 		for title in titles:
 			for name in names:
