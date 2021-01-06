@@ -1,4 +1,4 @@
-﻿This is a python crawler program to grasp paper cited relationship from google scholar. 
+﻿<b>This is a python crawler program to grasp paper cited relationship from google scholar. </b>
 
 The crawler first search google scholar by a origin paper name, and then get the url of page including papers cite the origin paper. Then grasp all the papers that cite the origin paper. In the next step, we will compare all the papers to papers already in mendeley researchMap group, if there are same papers, then we could make relationship between the papers with origin paper.
 
