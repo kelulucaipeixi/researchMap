@@ -5,5 +5,5 @@ The crawler first search google scholar by a origin paper name, and then get the
 
 ## get Relationship between Papers
 to run 
-                python main.py
+        >python main.py
 a file named outcome.csv will be generated after successfully running.In this file there will be two rows, source and target. Source rows including source papers while target rows including papers cited by source papers.
